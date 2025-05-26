@@ -83,10 +83,11 @@ body {
   position: fixed;
   bottom: 30px;
   background-color: #dad5d5;
-  border-radius: 30px;
+  border-radius: 10px;
   width: 70vw;
   padding: 12px; 
   filter: invert(1);
+  height: 40px;
 }
 
 .cardContainer {
@@ -210,4 +211,41 @@ body {
   height: 544px;  /* 644 */
   overflow: auto;
   margin-bottom: 44px ;
+}
+
+.seekbar{
+  height: 4px;
+  width: 98%;
+  margin: 6px;
+  background:  black;
+  position: absolute;
+  bottom: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.circle{
+  background-color: black;
+  width: 13px;
+  height: 13px;
+  border-radius: 13px;
+  position: relative;
+  bottom: 6px;
+  left: 0%;
+  transition: left 0.5s;
+}
+
+.songbuttons{
+  cursor: pointer;
+}
+
+.abovebar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.songinfo , .songtime{
+  color: black;
+  padding: 0 12px;
 }
