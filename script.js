@@ -114,6 +114,16 @@ async function main() {
     document.querySelector(".circle").style.left = percent * 100 +"%";
     currentSong.currentTime = ((currentSong.duration) * percent)
   })
+
+  //event listener for hamburger
+  document.querySelector(".hamburgerContainer").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "0"
+  })
+
+  //event listener for close button
+  document.querySelector(".close").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "-120%"
+  })
 }
 
 
