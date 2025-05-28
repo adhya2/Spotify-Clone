@@ -1,12 +1,17 @@
 console.log("Let's write javascript");
 let currentSong = new Audio();
+let songs;
 
 
 function formatTime(seconds) {
+  if (isNaN(seconds) || seconds < 0) {
+    return "00:00";
+  }
   const minutes = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
-  return `${minutes}:${secs < 10 ? "0" + secs : secs}`;
+  return `${minutes < 10 ? "0" + minutes : minutes}:${secs < 10 ? "0" + secs : secs}`;
 }
+
 
 
 
@@ -47,7 +52,7 @@ const playMusic = (track, pause = false) => {
 
 
 async function main() {
-  let songs = await getSongs(); //all songs list
+  songs = await getSongs(); //all songs list
   console.log(songs);
   playMusic(songs[0], true)
 
@@ -124,6 +129,36 @@ async function main() {
   document.querySelector(".close").addEventListener("click", () => {
     document.querySelector(".left").style.left = "-120%"
   })
+
+  //event listener for previous next button 
+  previous.addEventListener("click", () => {
+    console.log("Previous was clicked")
+    console.log(currentSong)
+    let index = songs.indexOf(currentSong.src.split('/').slice(-1)[0])
+    console.log(index)
+    if((index-1) >= 0){
+      playMusic(songs[index-1],false)
+    }
+  })
+
+  next.addEventListener("click", () => {
+    // console.log("next was clicked")
+    // console.log(currentSong.src);
+    // console.log(songs)
+    // console.log(currentSong.src.split('/'))
+    // console.log(currentSong.src.split('/').slice(-1)[0]) // need to find index of this in songs
+    let index = songs.indexOf(currentSong.src.split('/').slice(-1)[0])
+    console.log(index)
+    if((index+1) < songs.length){
+      playMusic(songs[index+1],false)
+    }
+  })
+
+  //eventlistener to volume
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
+      console.log(e, e.target, e.target.value);
+      currentSong.volume = parseInt(e.target.value) / 100;
+    })
 }
 
 
